@@ -1,0 +1,25 @@
+{% extends 'myapp/base.html' %}
+
+{% block body_block %}
+
+    <div class="container">
+    <div class="row">
+        <div class="col-md-offset-5 col-md-3">
+            <form class="form-login" method="post" action="/forgotpass"> {% csrf_token %}
+            <h4>Welcome back.</h4>
+            <input type="text" id="email" name="email" class="form-control input-sm chat-input" placeholder="Email" />
+
+            <div class="form-group">
+            <span class="group-btn">
+                <input type="submit" class="btn btn-primary btn-md" value="Login">
+
+            </span>
+            </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+

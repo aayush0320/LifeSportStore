@@ -1,0 +1,29 @@
+{% extends 'myapp/base.html' %}
+
+{% block body_block %}
+    <div style="padding-top: 3%" align="center">
+    <div style="width: 25%;border-radius: 5px" align="center">
+     <div class="col s12 z-depth-5 card-panel">
+        <h4>Please Login!</h4><br/>
+         {% if notlogin %}
+        <div id="alert1" class="card-panel white lighten-2 red-text" style="line-height: 0; width: 65%;">
+        <a href="myapp/login.html" id="close1" class="close red-text" style="vertical-align: inherit; padding-bottom: 120px" data-dismiss="alert" aria-label="close">&times;</a>
+        Username or Password Wrong
+        </div> <br/>
+        {% endif %}
+    {% if inactive %}
+        <div id="alert1" class="card-panel white lighten-2 red-text" style="line-height: 0; width: 65%;">
+   <a href="myapp/login.html" id="close1" class="close red-text" style="vertical-align: inherit; padding-bottom: 120px" data-dismiss="alert" aria-label="close">&times;</a>
+        User is inactive.
+    </div><br/>
+        {% endif %}
+    <form action="." method="post">{% csrf_token %}
+    <div style="width: 80%">
+        {{ form.as_p }}<br/>
+        <button type="submit" class="btn btn-primary btn-block" value="LogIn">Login</button><br/>
+    </div>
+    </form>
+     </div>
+    </div>
+    </div>
+{% endblock %}

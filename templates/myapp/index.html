@@ -1,0 +1,35 @@
+{% extends 'myapp/base.html' %}
+
+{% block body_block %}
+    {% if cat_list %}
+        <h2>List of Categories</h2>
+        <ol>
+            {% for cat  in cat_list %}
+
+                <li> <a href="cat_no/{{ cat.pk }}">{{ cat.name}} </a></li>
+            {% endfor %}
+        </ol>
+
+    {% else %}
+        <strong>There are no available categories!</strong>
+    {% endif %}
+
+    {% if prod_list %}
+        <h2>List of Product</h2>
+        <ol>
+            {% for prod  in prod_list %}
+                <li> {{ prod.name}} </li>
+            {% endfor %}
+        </ol>
+
+    {% else %}
+        <strong>There are no available Products!</strong>
+    {% endif %}
+
+    {% ifnotequal request.session.last_login None %}
+        <h4><b>Last Login: </b>{{ request.session.last_login }}</h4>
+    {% else %}
+        <h4><b>Last Login: </b>'Your last login was more than one hour ago'</h4>
+    {% endifnotequal %}
+
+{% endblock %}

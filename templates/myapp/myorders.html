@@ -1,0 +1,28 @@
+{% extends 'myapp/base.html' %}
+
+{% block body_block %}
+
+{% if testuser.client %}
+
+{% if myorder %}
+    <h2>My Orders</h2>
+        <table class="table">
+            {% for order in myorder %}
+                <tr>
+                    <td>
+                        {{order.product}}
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+        </table>
+{% else %}
+        <strong>You have not placed any order!</strong>
+{% endif %}
+
+     {% else %}
+        <h1>You are not a registered client</h1>
+    {% endif %}
+
+{% endblock %}

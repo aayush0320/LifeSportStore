@@ -1,0 +1,16 @@
+body{
+	background-color: aqua;
+    color: black;
+}
+
+.h1{
+    font-size: 12px;
+    color: black;
+    font-style: normal;
+    position: absolute;
+}
+
+.hbar1 {
+    display: inline;
+    margin: 15px;
+}

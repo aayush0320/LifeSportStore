@@ -1,0 +1,36 @@
+{% extends 'myapp/base.html' %}
+
+{% block body_block %}
+{% if prod_list %}
+        <h2>List of Product</h2>
+        <ol>
+            {% for prod in prod_list %}
+                <li><a href="{% url 'myapp:products' %}" >{{ prod.name}} </a></li>
+            {% endfor %}
+        </ol>
+
+    <h2>People interested</h2>
+        <ol>
+            {% for prod in prod_list %}
+                <li> {{ prod.interested}} </li>
+            {% endfor %}
+        </ol>
+    <h2>Price</h2>
+        <ol>
+            {% for prod in prod_list %}
+                <li> {{ prod.price}} </li>
+            {% endfor %}
+        </ol>
+
+     <form method="post">
+        {% csrf_token %}
+            <table border="1">
+                {{ form }}
+            </table>
+         <button type="submit">  Submit </button>
+        </form>
+
+    {% else %}
+        <strong>There are no available Products!</strong>
+    {% endif %}
+{% endblock %}

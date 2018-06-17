@@ -1,0 +1,16 @@
+{% extends 'myapp/base.html' %}
+
+{% block body_block %}
+{% if prodlist %}
+        <h2>List of Product</h2>
+        <ol>
+            {% for prod in prodlist %}
+                <li> <a href="{% url 'myapp:product details' prod.pk %}"> {{ prod.name}} </a></li>
+            {% endfor %}
+        </ol>
+
+    {% else %}
+        <strong>There are no available Products!</strong>
+    {% endif %}
+{% endblock %}
+
