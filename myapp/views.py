@@ -14,8 +14,8 @@ from django.contrib.auth import authenticate, login, logout, SESSION_KEY, BACKEN
 from django.contrib.auth.decorators import login_required, user_passes_test
 
 from myapp import forms
-from myapp.forms import OrderForm, InterestForm, LoginForm
-from myapp.models import Category, Product, Client, Order
+from myapp.forms import OrderForm, InterestForm, LoginForm, UploadImageForm
+from myapp.models import Category, Product, Client, Order, ImagesTable
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 
@@ -232,5 +232,26 @@ def myorders(request):
 #         return render(request, 'myapp/forgotpass.html', {'emailSent': True})
 #     else:
 #         return render(request, 'myapp/forgotpass.html')
-#
-#
+
+def upload_form(request):
+    saved  = False
+    if request.user.is_authenticated:
+        testuser = request.user
+    else:
+        testuser = ""
+
+    if(request.method == 'POST'):
+        form = UploadImageForm(request.POST,request.FILES)
+        if form.is_valid:
+            imagestable = ImagesTable()
+            usr = Client(username=testuser)
+            imagestable.client = usr
+            imagestable.title = form['title']
+            imagestable.picture = form['imgfile']
+            imagestable.save()
+            saved = True
+            return HttpResponseRedirect(reverse('myapp:upload'), {'form': form, 'saved': saved})
+    else:
+        form = UploadImageForm()
+        return render(request, 'myapp/upload.html', {'form': form, 'saved':saved})
+

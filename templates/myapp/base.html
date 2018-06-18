@@ -83,6 +83,7 @@
             {% if testuser %}
 
                 <a href="#"> Hello {{testuser.username }}</a>
+                <li><img src="{{ testuser.client.picture }}" height="50" width="50" /></li>
                 <li> <a href="{% url 'myapp:myorders' %}">MyOrders</a> </li>
                 <li> <a href="{% url 'myapp:logout' %}">Logout</a> </li>
             {% else %}

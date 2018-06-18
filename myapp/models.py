@@ -43,6 +43,7 @@ class Client(User):
     city = models.CharField(max_length=20)
     province = models.CharField(max_length=2, choices=PROVINCE_CHOICES, default='ON')
     interested_in = models.ManyToManyField(Category)
+    picture = models.ImageField(upload_to='myapp/images', null=True, blank=True)
 
     def __str__(self):
         return self.username
@@ -70,4 +71,9 @@ class Order(models.Model):
         x = pr.values()[0].get('price')
         y = od.values()[0].get('num_unit')
         return x*y
+
+class ImagesTable(models.Model):
+    title = models.CharField(max_length=100)
+    picture = models.ImageField(upload_to='myapp/images')
+    client = models.OneToOneField(Client, on_delete=models.CASCADE)
 

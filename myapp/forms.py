@@ -28,3 +28,7 @@ class LoginForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput(
         attrs={'required': True, 'class': 'validate input-field', 'placeholder': 'Password'}),
         label="")
+
+class UploadImageForm(forms.Form):
+    title = forms.CharField( max_length=100)
+    imgfile = forms.ImageField()
